@@ -1,4 +1,5 @@
 import { Submission } from "../../domain/entities/submission";
+import { StudentsRepository } from "../repositories/StudentsRepository";
 
 type CreateChallengeSubmissionRequest = {
     studentId: string;
@@ -6,6 +7,10 @@ type CreateChallengeSubmissionRequest = {
 }
 
 export class CreateChallengeSubmission {
+    constructor(
+        private studentsRepositpry: StudentsRepository
+    ) {}
+
     async execute({studentId, challengeId} : CreateChallengeSubmissionRequest) {
         const submission = Submission.create({
             studentId,
